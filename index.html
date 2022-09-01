@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+    
+    <script>
+        //LINKEDLIST IMPLEMENTATION
+        let display = document.getElementById('display')
+
+        function Node(data=null, next_node=null) {
+            this.data = data,
+            this.next_node = next_node
+        }
+
+        function LinkedList() {
+            this.head = null,
+            this.tail = null,
+
+            this.insert_at_beginning = (data) => {
+                let new_node = new Node(data=data)
+                if (!this.head) {
+                    this.head = new_node
+                    this.tail = new_node
+                } else {
+                    this.head.next_node = new_node
+                    this.head = this.head.next_node
+                }
+            },
+
+            this.insert_at_end = (data) => {
+                let new_node = new Node(data=data)
+                if (!this.tail) {
+                    this.insert_at_beginning(data)
+                }
+                new_node.next_node = this.tail
+                this.tail = new_node
+            },
+
+            this.show_linked_list = () => {
+                let output = ""
+                node = this.tail
+                while (node) {
+                    output = output + node.data + " -> "
+                    node = node.next_node
+                }
+                output = output + "None"
+                return output
+            }
+        }
+
+        ll = new LinkedList()
+
+        ll.insert_at_beginning("one")
+        ll.insert_at_beginning("two")
+        ll.insert_at_beginning("three")
+
+        ll.insert_at_end("last")
+
+        display.textContent = ll.show_linked_list()
+
+        //END OF LINKEDLIST
+
+    </script>
+</body>
+</html>
